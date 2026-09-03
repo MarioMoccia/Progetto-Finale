@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function Homepage()
     {
-        $articles = Article::where('is_accepted', true)->with('category')->orderBy('created_at', 'desc')->take(6)->get();
+        $articles = Article::where('is_accepted', true)->with(['category', 'images'])->orderBy('created_at', 'desc')->take(6)->get();
 
         return view('homepage', compact('articles'));
     }
@@ -29,7 +29,7 @@ class PublicController extends Controller
 
         $articles = Article::search($query)
             ->where('is_accepted', true)
-            ->query(fn ($builder) => $builder->with('category'))
+            ->query(fn ($builder) => $builder->with(['category', 'images']))
             ->paginate(6);
 
         return view('articles.searched', ['articles' => $articles, 'query' => $query]);

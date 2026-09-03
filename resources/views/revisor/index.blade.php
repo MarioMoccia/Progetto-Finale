@@ -6,11 +6,19 @@
             <div class="row g-4">
                 <div class="col-12 col-md-6">
                     <div class="row g-2">
-                        @for ($i = 0; $i < 6; $i++)
-                            <div class="col-4">
-                                <img src="https://picsum.photos/seed/{{ $article_to_check->id }}{{ $i }}/300/200" class="img-fluid rounded" alt="Immagine segnaposto">
-                            </div>
-                        @endfor
+                        @if ($article_to_check->images->count())
+                            @foreach ($article_to_check->images as $key => $image)
+                                <div class="col-6 col-md-4 mb-4">
+                                    <img src="{{ Storage::url($image->path) }}" class="img-fluid rounded shadow" alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+                                </div>
+                            @endforeach
+                        @else
+                            @for ($i = 0; $i < 6; $i++)
+                                <div class="col-6 col-md-4 mb-4 text-center">
+                                    <img src="https://picsum.photos/seed/{{ $article_to_check->id }}{{ $i }}/300/200" class="img-fluid rounded shadow" alt="Immagine segnaposto">
+                                </div>
+                            @endfor
+                        @endif
                     </div>
                 </div>
                 <div class="col-12 col-md-6">

@@ -2,27 +2,29 @@
     <div class="container my-5">
         <div class="row g-4">
             <div class="col-12 col-md-6">
-                <div id="articleCarousel" class="carousel slide shadow-sm" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://picsum.photos/seed/{{ $article->id }}a/600/400" class="d-block w-100 rounded" alt="Foto 1 di {{ $article->title }}">
+                @if ($article->images->count() > 0)
+                    <div id="articleCarousel" class="carousel slide shadow-sm" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($article->images as $key => $image)
+                                <div class="carousel-item @if($loop->first) active @endif">
+                                    <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded" alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article->title }}'">
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/seed/{{ $article->id }}b/600/400" class="d-block w-100 rounded" alt="Foto 2 di {{ $article->title }}">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://picsum.photos/seed/{{ $article->id }}c/600/400" class="d-block w-100 rounded" alt="Foto 3 di {{ $article->title }}">
-                        </div>
+                        @if ($article->images->count() > 1)
+                            <button class="carousel-control-prev" type="button" data-bs-target="#articleCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Precedente</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#articleCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Successivo</span>
+                            </button>
+                        @endif
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#articleCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Precedente</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#articleCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Successivo</span>
-                    </button>
-                </div>
+                @else
+                    <img src="https://picsum.photos/seed/{{ $article->id }}/600/400" class="d-block w-100 rounded shadow-sm" alt="Nessuna foto inserita dall'utente">
+                @endif
             </div>
             <div class="col-12 col-md-6">
                 <h1>{{ $article->title }}</h1>

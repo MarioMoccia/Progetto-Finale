@@ -5,9 +5,12 @@ namespace App\Livewire;
 use App\Models\Article;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateArticleForm extends Component
 {
+    use WithFileUploads;
+
     #[Validate('required|string|max:255')]
     public string $title = '';
 
@@ -19,6 +22,10 @@ class CreateArticleForm extends Component
 
     #[Validate('required|exists:categories,id')]
     public string $category_id = '';
+
+    public array $images = [];
+
+    public $temporary_images;
 
     public bool $success = false;
 
@@ -37,11 +44,30 @@ class CreateArticleForm extends Component
         ];
     }
 
+    public function updatedTemporaryImages(): void
+    {
+        if ($this->validate([
+            'temporary_images.*' => 'image|max:1024',
+            'temporary_images' => 'max:6',
+        ])) {
+            foreach ($this->temporary_images as $image) {
+                $this->images[] = $image;
+            }
+        }
+    }
+
+    public function removeImage($key): void
+    {
+        if (in_array($key, array_keys($this->images))) {
+            unset($this->images[$key]);
+        }
+    }
+
     public function store(): void
     {
         $this->validate();
 
-        Article::create([
+        $article = Article::create([
             'title' => $this->title,
             'description' => $this->description,
             'price' => $this->price,
@@ -49,7 +75,13 @@ class CreateArticleForm extends Component
             'user_id' => auth()->id(),
         ]);
 
-        $this->reset(['title', 'description', 'price', 'category_id']);
+        if (count($this->images) > 0) {
+            foreach ($this->images as $image) {
+                $article->images()->create(['path' => $image->store('images', 'public')]);
+            }
+        }
+
+        $this->reset(['title', 'description', 'price', 'category_id', 'images', 'temporary_images']);
         $this->success = true;
     }
 
