@@ -14,6 +14,15 @@ class PublicController extends Controller
         return view('homepage', compact('articles'));
     }
 
+    public function setLanguage(string $lang)
+    {
+        if (in_array($lang, ['it', 'gb', 'fr'])) {
+            session()->put('locale', $lang);
+        }
+
+        return redirect()->back();
+    }
+
     public function searchArticles(Request $request)
     {
         $query = $request->input('query');

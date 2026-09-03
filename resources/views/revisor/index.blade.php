@@ -17,7 +17,7 @@
                     <h2>{{ $article_to_check->title }}</h2>
                     <h5 class="text-muted">Autore: {{ $article_to_check->user->name }}</h5>
                     <h4 class="text-primary">{{ number_format($article_to_check->price, 2) }} &euro;</h4>
-                    <p class="fst-italic">{{ $article_to_check->category->name }}</p>
+                    <p class="fst-italic">{{ __('ui.'.$article_to_check->category->name) }}</p>
                     <p>{{ $article_to_check->description }}</p>
                     <div class="d-flex gap-2 mt-4">
                         <form action="{{ route('revisor.reject', $article_to_check) }}" method="POST">

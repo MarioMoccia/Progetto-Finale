@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container my-5">
-        <h1 class="mb-4">Annunci in <span class="fst-italic">{{ $category->name }}</span></h1>
+        <h1 class="mb-4">Annunci in <span class="fst-italic">{{ __('ui.'.$category->name) }}</span></h1>
         <div class="row g-4">
             @forelse ($articles as $article)
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">

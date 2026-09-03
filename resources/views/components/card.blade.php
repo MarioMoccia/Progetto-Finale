@@ -6,8 +6,8 @@
         <h5 class="card-title">{{ $article->title }}</h5>
         <p class="text-muted mb-3">{{ number_format($article->price, 2) }} &euro;</p>
         <div class="mt-auto d-flex justify-content-between">
-            <a href="{{ route('articles.show', $article) }}" class="btn btn-sm btn-primary">Dettaglio</a>
-            <a href="{{ route('articles.byCategory', $article->category) }}" class="btn btn-sm btn-outline-secondary">{{ $article->category->name }}</a>
+            <a href="{{ route('articles.show', $article) }}" class="btn btn-sm btn-primary">{{ __('ui.details') }}</a>
+            <a href="{{ route('articles.byCategory', $article->category) }}" class="btn btn-sm btn-outline-secondary">{{ __('ui.'.$article->category->name) }}</a>
         </div>
     </div>
 </div>

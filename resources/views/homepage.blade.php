@@ -2,10 +2,10 @@
     <div class="container my-5">
         <div class="row align-items-center justify-content-center text-center py-4">
             <div class="col-12">
-                <h1 class="display-4">Benvenuto su Presto.it</h1>
-                <p class="lead text-muted">Scopri offerte, vendi con semplicità .</p>
+                <h1 class="display-4">{{ __('ui.welcome') }}</h1>
+                <p class="lead text-muted">{{ __('ui.welcomeSubtitle') }}</p>
                 @auth
-                    <a class="btn btn-dark mt-3" href="{{ route('articles.create') }}">Inserisci annuncio</a>
+                    <a class="btn btn-dark mt-3" href="{{ route('articles.create') }}">{{ __('ui.insertArticle') }}</a>
                 @endauth
             </div>
         </div>
@@ -13,8 +13,8 @@
 
     <div class="container my-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0">Ultimi annunci</h2>
-            <a href="{{ route('articles.index') }}" class="btn btn-outline-dark btn-sm">Vedi tutti</a>
+            <h2 class="mb-0">{{ __('ui.latestArticles') }}</h2>
+            <a href="{{ route('articles.index') }}" class="btn btn-outline-dark btn-sm">{{ __('ui.seeAll') }}</a>
         </div>
         <div class="row g-4">
             @forelse ($articles as $article)
@@ -23,7 +23,7 @@
                 </div>
             @empty
                 <div class="col-12">
-                    <p class="text-muted">Non sono ancora stati creati annunci.</p>
+                    <p class="text-muted">{{ __('ui.noArticlesYet') }}</p>
                 </div>
             @endforelse
         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\RevisorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'Homepage'])->name('homepage');
+Route::post('/lingua/{lang}', [PublicController::class, 'setLanguage'])->name('setLocale');
 
 Route::get('/articles/create', [ArticleController::class, 'create'])->middleware('auth')->name('articles.create');
 Route::get('/articles/search', [PublicController::class, 'searchArticles'])->name('articles.search');

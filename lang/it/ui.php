@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'home' => 'Home',
+    'allArticles' => 'Tutti gli annunci',
+    'categories' => 'Categorie',
+    'searchPlaceholder' => 'Cerca annunci',
+    'search' => 'Cerca',
+    'login' => 'Login',
+    'register' => 'Registrati',
+    'createArticle' => 'Crea Annuncio',
+    'profile' => 'Profilo',
+    'logout' => 'Logout',
+    'reviewZone' => 'Zona revisore',
+    'welcome' => 'Benvenuto su Presto.it',
+    'welcomeSubtitle' => 'Scopri offerte, vendi con semplicità.',
+    'insertArticle' => 'Inserisci annuncio',
+    'latestArticles' => 'Ultimi annunci',
+    'seeAll' => 'Vedi tutti',
+    'noArticlesYet' => 'Non sono ancora stati creati annunci.',
+    'aboutUs' => 'Chi Siamo',
+    'contacts' => 'Contatti',
+    'workWithUs' => 'Lavora con noi',
+    'details' => 'Dettaglio',
+
+    'Elettronica' => 'Elettronica',
+    'Motori' => 'Motori',
+    'Libri scolastici' => 'Libri scolastici',
+    'Accessori' => 'Accessori',
+    'Abbigliamento sportivo' => 'Abbigliamento sportivo',
+    'Biciclette' => 'Biciclette',
+    'Articoli per animali' => 'Articoli per animali',
+];

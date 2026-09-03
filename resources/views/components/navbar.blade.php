@@ -7,18 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('homepage') }}">{{ __('ui.home') }}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('articles.index') }}">Tutti gli annunci</a>
+          <a class="nav-link" href="{{ route('articles.index') }}">{{ __('ui.allArticles') }}</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorie
+            {{ __('ui.categories') }}
           </a>
           <ul class="dropdown-menu">
             @foreach($categories as $category)
-              <li><a class="dropdown-item" href="{{ route('articles.byCategory', $category) }}">{{ $category->name }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('articles.byCategory', $category) }}">{{ __('ui.'.$category->name) }}</a></li>
             @endforeach
           </ul>
         </li>
@@ -26,18 +26,24 @@
 
       <form class="d-flex" role="search" action="{{ route('articles.search') }}" method="GET">
         <div class="input-group">
-          <input type="search" name="query" class="form-control" placeholder="Cerca annunci" aria-label="Cerca">
-          <button type="submit" class="input-group-text btn btn-outline-success">Cerca</button>
+          <input type="search" name="query" class="form-control" placeholder="{{ __('ui.searchPlaceholder') }}" aria-label="{{ __('ui.search') }}">
+          <button type="submit" class="input-group-text btn btn-outline-success">{{ __('ui.search') }}</button>
         </div>
       </form>
+
+      <div class="d-flex align-items-center mx-2">
+        <x-_locale lang="it" />
+        <x-_locale lang="gb" />
+        <x-_locale lang="fr" />
+      </div>
 
       <ul class="navbar-nav ms-auto">
         @guest
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+            <a class="nav-link" href="{{ route('login') }}">{{ __('ui.login') }}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">Register</a>
+            <a class="nav-link" href="{{ route('register') }}">{{ __('ui.register') }}</a>
           </li>
         @else
           <li class="nav-item dropdown">
@@ -46,16 +52,16 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="{{ route('articles.create') }}">📢 Crea Annuncio</a>
+                <a class="dropdown-item" href="{{ route('articles.create') }}">📢 {{ __('ui.createArticle') }}</a>
               </li>
               <li>
-                <a class="dropdown-item" href="#">Profilo</a>
+                <a class="dropdown-item" href="#">{{ __('ui.profile') }}</a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf
-                  <button type="submit" class="dropdown-item">Logout</button>
+                  <button type="submit" class="dropdown-item">{{ __('ui.logout') }}</button>
                 </form>
               </li>
             </ul>
@@ -63,7 +69,7 @@
           @if (Auth::user()->is_revisor)
             <li class="nav-item">
               <a class="nav-link btn btn-outline-success btn-sm position-relative ms-2" href="{{ route('revisor.index') }}">
-                Zona revisore
+                {{ __('ui.reviewZone') }}
                 @if (\App\Models\Article::toBeRevisedCount() > 0)
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ \App\Models\Article::toBeRevisedCount() }}</span>
                 @endif

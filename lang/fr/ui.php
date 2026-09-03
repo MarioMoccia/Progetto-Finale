@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'home' => 'Accueil',
+    'allArticles' => 'Toutes les annonces',
+    'categories' => 'Catégories',
+    'searchPlaceholder' => 'Rechercher des annonces',
+    'search' => 'Rechercher',
+    'login' => 'Connexion',
+    'register' => "S'inscrire",
+    'createArticle' => 'Créer une annonce',
+    'profile' => 'Profil',
+    'logout' => 'Déconnexion',
+    'reviewZone' => 'Zone de modération',
+    'welcome' => 'Bienvenue sur Presto.it',
+    'welcomeSubtitle' => 'Découvrez des offres, vendez facilement.',
+    'insertArticle' => 'Publier une annonce',
+    'latestArticles' => 'Dernières annonces',
+    'seeAll' => 'Voir tout',
+    'noArticlesYet' => "Aucune annonce n'a encore été créée.",
+    'aboutUs' => 'À propos',
+    'contacts' => 'Contacts',
+    'workWithUs' => 'Travailler avec nous',
+    'details' => 'Détails',
+
+    'Elettronica' => 'Électronique',
+    'Motori' => 'Véhicules',
+    'Libri scolastici' => 'Livres scolaires',
+    'Accessori' => 'Accessoires',
+    'Abbigliamento sportivo' => 'Vêtements de sport',
+    'Biciclette' => 'Vélos',
+    'Articoli per animali' => 'Articles pour animaux',
+];
