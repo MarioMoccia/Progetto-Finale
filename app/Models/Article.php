@@ -24,4 +24,16 @@ class Article extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function setAccepted(bool $value): bool
+    {
+        $this->is_accepted = $value;
+
+        return $this->save();
+    }
+
+    public static function toBeRevisedCount(): int
+    {
+        return Article::where('is_accepted', null)->count();
+    }
 }

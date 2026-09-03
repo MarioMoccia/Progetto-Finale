@@ -53,6 +53,16 @@
               </li>
             </ul>
           </li>
+          @if (Auth::user()->is_revisor)
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-success btn-sm position-relative ms-2" href="{{ route('revisor.index') }}">
+                Zona revisore
+                @if (\App\Models\Article::toBeRevisedCount() > 0)
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ \App\Models\Article::toBeRevisedCount() }}</span>
+                @endif
+              </a>
+            </li>
+          @endif
         @endguest
       </ul>
     </div>
