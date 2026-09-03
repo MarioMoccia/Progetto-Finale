@@ -10,9 +10,11 @@ class CategoriesSeeder extends Seeder
     public array $categories = [
         'Elettronica',
         'Motori',
-        'Libri',
         'Libri scolastici',
         'Accessori',
+        'Abbigliamento sportivo',
+        'Biciclette',
+        'Articoli per animali',
     ];
 
     public function run(): void
