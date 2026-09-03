@@ -1,9 +1,11 @@
 <?php
 
+use App\Jobs\ResizeImage;
 use App\Livewire\CreateArticleForm;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
 
@@ -13,6 +15,7 @@ test('guests cannot access the create article page', function () {
 
 test('an authenticated user can create an article with multiple photos', function () {
     Storage::fake('public');
+    Queue::fake();
 
     $user = User::factory()->create();
     $category = Category::create(['name' => 'Elettronica']);
@@ -38,6 +41,8 @@ test('an authenticated user can create an article with multiple photos', functio
         ->and($article->images)->toHaveCount(2);
 
     Storage::disk('public')->assertExists($article->images->first()->path);
+
+    Queue::assertPushed(ResizeImage::class, $article->images->count());
 });
 
 test('an article cannot have more than 6 photos', function () {

@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Jobs\ResizeImage;
 use App\Models\Article;
+use App\Models\Image;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -77,7 +79,8 @@ class CreateArticleForm extends Component
 
         if (count($this->images) > 0) {
             foreach ($this->images as $image) {
-                $article->images()->create(['path' => $image->store('images', 'public')]);
+                $newImage = $article->images()->create(['path' => $image->store("articles/{$article->id}", 'public')]);
+                dispatch(new ResizeImage($newImage->path, Image::CROP_WIDTH, Image::CROP_HEIGHT));
             }
         }
 

@@ -1,7 +1,7 @@
 @props(['article'])
 
 <div class="card h-100 shadow-sm border-0">
-    <img src="{{ $article->images->isNotEmpty() ? Storage::url($article->images->first()->path) : 'https://picsum.photos/seed/'.$article->id.'/400/250' }}" class="card-img-top" alt="Immagine dell'annuncio {{ $article->title }}">
+    <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(\App\Models\Image::CROP_WIDTH, \App\Models\Image::CROP_HEIGHT) : 'https://picsum.photos/seed/'.$article->id.'/400/250' }}" class="card-img-top" alt="Immagine dell'annuncio {{ $article->title }}">
     <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ $article->title }}</h5>
         <p class="text-muted mb-3">{{ number_format($article->price, 2) }} &euro;</p>
