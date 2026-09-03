@@ -24,6 +24,13 @@
         </li>
       </ul>
 
+      <form class="d-flex" role="search" action="{{ route('articles.search') }}" method="GET">
+        <div class="input-group">
+          <input type="search" name="query" class="form-control" placeholder="Cerca annunci" aria-label="Cerca">
+          <button type="submit" class="input-group-text btn btn-outline-success">Cerca</button>
+        </div>
+      </form>
+
       <ul class="navbar-nav ms-auto">
         @guest
           <li class="nav-item">
