@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GoogleVisionLabelImage;
+use App\Jobs\GoogleVisionSafeSearch;
 use App\Jobs\ResizeImage;
 use App\Models\Article;
 use App\Models\Image;
@@ -81,6 +83,8 @@ class CreateArticleForm extends Component
             foreach ($this->images as $image) {
                 $newImage = $article->images()->create(['path' => $image->store("articles/{$article->id}", 'public')]);
                 dispatch(new ResizeImage($newImage->path, Image::CROP_WIDTH, Image::CROP_HEIGHT));
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                dispatch(new GoogleVisionLabelImage($newImage->id));
             }
         }
 

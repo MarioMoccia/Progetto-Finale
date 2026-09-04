@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\GoogleVisionLabelImage;
+use App\Jobs\GoogleVisionSafeSearch;
 use App\Jobs\ResizeImage;
 use App\Livewire\CreateArticleForm;
 use App\Models\Category;
@@ -43,6 +45,8 @@ test('an authenticated user can create an article with multiple photos', functio
     Storage::disk('public')->assertExists($article->images->first()->path);
 
     Queue::assertPushed(ResizeImage::class, $article->images->count());
+    Queue::assertPushed(GoogleVisionSafeSearch::class, $article->images->count());
+    Queue::assertPushed(GoogleVisionLabelImage::class, $article->images->count());
 });
 
 test('an article cannot have more than 6 photos', function () {
