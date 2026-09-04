@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Jobs\GoogleVisionLabelImage;
 use App\Jobs\GoogleVisionSafeSearch;
+use App\Jobs\RemoveFaces;
 use App\Jobs\ResizeImage;
 use App\Models\Article;
 use App\Models\Image;
@@ -82,9 +83,11 @@ class CreateArticleForm extends Component
         if (count($this->images) > 0) {
             foreach ($this->images as $image) {
                 $newImage = $article->images()->create(['path' => $image->store("articles/{$article->id}", 'public')]);
-                dispatch(new ResizeImage($newImage->path, Image::CROP_WIDTH, Image::CROP_HEIGHT));
-                dispatch(new GoogleVisionSafeSearch($newImage->id));
-                dispatch(new GoogleVisionLabelImage($newImage->id));
+                RemoveFaces::withChain([
+                    new ResizeImage($newImage->path, Image::CROP_WIDTH, Image::CROP_HEIGHT),
+                    new GoogleVisionSafeSearch($newImage->id),
+                    new GoogleVisionLabelImage($newImage->id),
+                ])->dispatch($newImage->id);
             }
         }
 
