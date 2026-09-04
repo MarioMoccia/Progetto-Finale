@@ -14,6 +14,11 @@ class PublicController extends Controller
         return view('homepage', compact('articles'));
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function setLanguage(string $lang)
     {
         if (in_array($lang, ['it', 'gb', 'fr'])) {

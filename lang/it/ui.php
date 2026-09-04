@@ -19,6 +19,7 @@ return [
     'seeAll' => 'Vedi tutti',
     'noArticlesYet' => 'Non sono ancora stati creati annunci.',
     'aboutUs' => 'Chi Siamo',
+    'aboutUsText' => 'Siamo una nuova realtà dell\'ecommerce nata nel 2026, orgogliosamente campana.',
     'contacts' => 'Contatti',
     'workWithUs' => 'Lavora con noi',
     'details' => 'Dettaglio',

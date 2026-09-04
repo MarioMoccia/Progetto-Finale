@@ -19,6 +19,7 @@ return [
     'seeAll' => 'See all',
     'noArticlesYet' => 'No listings have been created yet.',
     'aboutUs' => 'About us',
+    'aboutUsText' => 'We are a new e-commerce venture launched in 2026, proudly based in Campania, Italy.',
     'contacts' => 'Contacts',
     'workWithUs' => 'Work with us',
     'details' => 'Details',

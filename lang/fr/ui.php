@@ -19,6 +19,7 @@ return [
     'seeAll' => 'Voir tout',
     'noArticlesYet' => "Aucune annonce n'a encore été créée.",
     'aboutUs' => 'À propos',
+    'aboutUsText' => 'Nous sommes une nouvelle réalité du e-commerce née en 2026, fièrement originaire de Campanie.',
     'contacts' => 'Contacts',
     'workWithUs' => 'Travailler avec nous',
     'details' => 'Détails',
