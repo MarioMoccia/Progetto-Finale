@@ -34,14 +34,12 @@
 
                 <div class="d-flex gap-2 mt-3">
                     <button type="button" class="btn btn-success">{{ __('ui.buy') }}</button>
-                    @auth
-                        <form action="{{ route('articles.favorite', $article) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-outline-danger" title="{{ $article->isFavoritedBy(auth()->user()) ? __('ui.removeFavorite') : __('ui.addFavorite') }}">
-                                <i class="bi {{ $article->isFavoritedBy(auth()->user()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
-                            </button>
-                        </form>
-                    @endauth
+                    <form action="{{ route('articles.favorite', $article) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger" title="{{ $article->isFavoritedBy(auth()->user()) ? __('ui.removeFavorite') : __('ui.addFavorite') }}">
+                            <i class="bi {{ $article->isFavoritedBy(auth()->user()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
