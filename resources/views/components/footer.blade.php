@@ -1,5 +1,5 @@
 <footer class="site-footer">
-  <p>&copy; Presto 2026</p>
+  <p>&copy; Presto.it 2026</p>
   <div class="footer-links">
     <a href="/privacy">{{ __('ui.aboutUs') }}</a>
     <a href="/cookie">{{ __('ui.contacts') }}</a>
