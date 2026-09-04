@@ -41,4 +41,17 @@ class ArticleController extends Controller implements HasMiddleware
 
         return view('articles.by-category', compact('category', 'articles'));
     }
+
+    public function toggleFavorite(Article $article)
+    {
+        $user = auth()->user();
+
+        if ($article->isFavoritedBy($user)) {
+            $article->favoritedBy()->detach($user->id);
+        } else {
+            $article->favoritedBy()->attach($user->id);
+        }
+
+        return redirect()->back();
+    }
 }

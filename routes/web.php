@@ -14,6 +14,7 @@ Route::get('/articles/search', [PublicController::class, 'searchArticles'])->nam
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/category/{category}', [ArticleController::class, 'byCategory'])->name('articles.byCategory');
+Route::post('/articles/{article}/favorite', [ArticleController::class, 'toggleFavorite'])->middleware('auth')->name('articles.favorite');
 
 Route::get('/revisor', [RevisorController::class, 'index'])->middleware('isRevisor')->name('revisor.index');
 Route::patch('/revisor/{article}/accept', [RevisorController::class, 'accept'])->middleware('isRevisor')->name('revisor.accept');

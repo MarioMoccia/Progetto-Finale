@@ -31,6 +31,18 @@
                 <h3 class="text-primary mb-3">{{ number_format($article->price, 2) }} &euro;</h3>
                 <a href="{{ route('articles.byCategory', $article->category) }}" class="badge text-bg-secondary text-decoration-none mb-3 d-inline-block">{{ $article->category->name }}</a>
                 <p>{{ $article->description }}</p>
+
+                <div class="d-flex gap-2 mt-3">
+                    <button type="button" class="btn btn-success">{{ __('ui.buy') }}</button>
+                    @auth
+                        <form action="{{ route('articles.favorite', $article) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger" title="{{ $article->isFavoritedBy(auth()->user()) ? __('ui.removeFavorite') : __('ui.addFavorite') }}">
+                                <i class="bi {{ $article->isFavoritedBy(auth()->user()) ? 'bi-heart-fill' : 'bi-heart' }}"></i>
+                            </button>
+                        </form>
+                    @endauth
+                </div>
             </div>
         </div>
     </div>

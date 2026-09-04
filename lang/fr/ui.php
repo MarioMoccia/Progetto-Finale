@@ -23,6 +23,9 @@ return [
     'contacts' => 'Contacts',
     'workWithUs' => 'Travailler avec nous',
     'details' => 'Détails',
+    'buy' => 'Acheter',
+    'addFavorite' => 'Ajouter aux favoris',
+    'removeFavorite' => 'Retirer des favoris',
 
     'Elettronica' => 'Électronique',
     'Motori' => 'Véhicules',

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
@@ -32,6 +33,20 @@ class Article extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function favoritedBy(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
+    public function isFavoritedBy(?User $user): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return $this->favoritedBy()->where('user_id', $user->id)->exists();
     }
 
     public function setAccepted(bool $value): bool
